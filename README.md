@@ -1,4 +1,4 @@
-# hajimeteno-excel 磯のブランチ
+# hajimeteno-excel
 
 ## Project setup
 ```
