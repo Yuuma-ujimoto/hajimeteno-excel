@@ -1,10 +1,27 @@
 <template>
+<div class="wrap">
   <h2>course情報</h2>
-   <div v-for="course in axiosdata" :key="course.courseId">
-   <h2> {{ course.courseName }}</h2>
-   
-    <router-link :to="'/course/info/'+course.courseId">詳細を見る</router-link> 
-   </div>
+   <div v-for="course in axiosdata" :key="course.courseId" class="course-wrap">
+    <div class="course-wrap-box">
+      <div class="img-box">
+        <div class="img-circle">
+
+        </div>
+      </div>
+      <div class="text-box">
+
+      
+      <h2> {{ course.courseName }}</h2>
+      <p> {{ course.courseDetail }} </p>
+      <div class="btn-wrap">
+        <button><router-link :to="'/course/info/'+course.courseId">レッスン詳細へ</router-link> </button>
+        <button><router-link :to="'/course/info/'+course.courseId">レッスンを始める</router-link> </button>
+      </div>
+      </div>
+    </div>
+    <div class="gray-line"> </div>
+    </div>
+</div>
 
 </template>
 
@@ -36,5 +53,41 @@ export default {
 </script>
 
 <style scoped>
+.wrap{
+width: 960px;
+margin: 0 auto;
+}
+.img-circle{
+  width:118px;
+  height: 118px;
+  background: #fff;
+  margin:0 auto;
+  vertical-align: middle
+}
+
+.course-wrap-box{
+  width:915px;
+  height: 241px;
+   display: flex;
+   border: solid 1px #000;
+  
+
+}
+.img-box{
+  width: 30%;
+  background-color:#1D6B41 ;
+}
+.btn-wrap{
+  widows: 500px;
+  display: flex;
+  justify-content: space-around;
+}
+.gray-line{
+  width: 10px;
+  height: 50px;
+  margin:10px 0px 10px 14%;
+  border-radius: 20px;
+ background: rgba(36, 61, 63, 0.2);
+}
 
 </style>
