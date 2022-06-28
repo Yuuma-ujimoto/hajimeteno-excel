@@ -1,4 +1,5 @@
 <template>
+  <h2>course情報</h2>
 
 </template>
 

@@ -13,7 +13,7 @@ export default {
   methods:{
     ajax_test:async function(){
 
-      const axiosURL = axios_domain+"/course_list"
+      const axiosURL = axios_domain+"/api/course/get_all"
 
       const axiosResponse = await axios.get(axiosURL)
     }
