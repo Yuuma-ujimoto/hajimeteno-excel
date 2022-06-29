@@ -19,7 +19,11 @@
       </div>
       </div>
     </div>
-    <div class="gray-line"> </div>
+    <div v-if="course.courseId != axiosdata.length">
+<div class="gray-line"> </div>
+</div>
+
+  
     </div>
 </div>
 
@@ -62,7 +66,7 @@ margin: 0 auto;
   height: 118px;
   background: #fff;
   margin:0 auto;
-  vertical-align: middle
+ 
 }
 
 .course-wrap-box{
