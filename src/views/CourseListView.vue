@@ -10,12 +10,14 @@
       </div>
       <div class="text-box">
 
-      
-      <h2> {{ course.courseName }}</h2>
-      <p> {{ course.courseDetail }} </p>
+       <div class="text-wrap">
+        <h2> {{ course.courseName }}</h2>
+        <p> {{ course.courseDetail }} </p>
+      </div>
+     
       <div class="btn-wrap">
-        <button><router-link :to="'/course/info/'+course.courseId">レッスン詳細へ</router-link> </button>
-        <button><router-link :to="'/course/info/'+course.courseId">レッスンを始める</router-link> </button>
+        <router-link :to="'/course/info/'+course.courseId"><button class="back-white">レッスン詳細へ</button></router-link> 
+        <router-link :to="'/course/info/'+course.courseId"><button class="back-green">レッスンを始める</button></router-link> 
       </div>
       </div>
     </div>
@@ -57,6 +59,7 @@ export default {
 </script>
 
 <style scoped>
+
 .wrap{
 width: 960px;
 margin: 0 auto;
@@ -72,20 +75,56 @@ margin: 0 auto;
 .course-wrap-box{
   width:915px;
   height: 241px;
-   display: flex;
-   border: solid 1px #000;
-  
-
+  display: flex;
+  border: solid 1px #000;
 }
 .img-box{
-  width: 30%;
+  width: 213px;
   background-color:#1D6B41 ;
 }
-.btn-wrap{
-  widows: 500px;
-  display: flex;
-  justify-content: space-around;
+.text-box{
+  width:702px;
 }
+.text-wrap{
+  height: 173px;
+}
+
+/* ボタン */
+a{
+text-decoration: none;
+}
+.btn-wrap{
+  display: flex;
+  justify-content: end;
+  
+}
+button{
+  width:133px;
+  height: 43px;
+  border:solid 1px #1D6B41 ;
+  
+}
+
+.back-white{
+  background: #fff;
+  color: #1D6B41;
+  margin-right: 17px;
+  
+}
+.back-white a{
+  background: #fff;
+  color: #1D6B41;
+}
+.back-green{
+  background: #1D6B41;
+  color: #fff;
+  margin-right: 41px;
+}
+.back-green a{
+  background: #1D6B41;
+  color: #fff;
+}
+
 .gray-line{
   width: 10px;
   height: 50px;
