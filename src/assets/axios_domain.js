@@ -1,0 +1,1 @@
+export const axios_domain = "http://10.192.129.171:8080"
