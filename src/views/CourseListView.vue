@@ -1,6 +1,6 @@
 <template>
 <div class="wrap">
-  <h2>course情報</h2>
+  <h1>マンセル</h1>
    <div v-for="course in axiosdata" :key="course.courseId" class="course-wrap">
     <div class="course-wrap-box">
       <div class="img-box">
@@ -60,6 +60,11 @@ export default {
 
 <style scoped>
 
+h1{
+  text-align: center;
+  margin-bottom: 49.5px;
+}
+
 .wrap{
 width: 960px;
 margin: 0 auto;
@@ -68,15 +73,16 @@ margin: 0 auto;
   width:118px;
   height: 118px;
   background: #fff;
-  margin:0 auto;
- 
+  margin:61px auto 0;
+  border-radius: 100px;
+ border:4px solid #94C433;
 }
 
 .course-wrap-box{
   width:915px;
   height: 241px;
   display: flex;
-  border: solid 1px #000;
+  box-shadow: 8px 5px 16px -9px rgba(0, 0, 0, 0.25);;
 }
 .img-box{
   width: 213px;
@@ -84,9 +90,16 @@ margin: 0 auto;
 }
 .text-box{
   width:702px;
+  
 }
 .text-wrap{
   height: 173px;
+  margin-left: 41px;
+}
+h2{
+  padding:66px 0 19px 0;
+  font-size: 24px;
+  margin: 0;
 }
 
 /* ボタン */
@@ -102,7 +115,9 @@ button{
   width:133px;
   height: 43px;
   border:solid 1px #1D6B41 ;
-  
+}
+button:hover{
+  cursor: pointer;
 }
 
 .back-white{
@@ -128,7 +143,7 @@ button{
 .gray-line{
   width: 10px;
   height: 50px;
-  margin:10px 0px 10px 14%;
+  margin:10px 0px 10px 10%;
   border-radius: 20px;
  background: rgba(36, 61, 63, 0.2);
 }
