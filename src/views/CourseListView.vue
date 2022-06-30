@@ -5,7 +5,7 @@
     <div class="course-wrap-box">
       <div class="img-box">
         <div class="img-circle">
-
+          <img src="@/assets/img/excel.png" alt="">
         </div>
       </div>
       <div class="text-box">
@@ -59,7 +59,6 @@ export default {
 </script>
 
 <style scoped>
-
 h1{
   text-align: center;
   margin-bottom: 49.5px;
@@ -69,20 +68,27 @@ h1{
 width: 960px;
 margin: 0 auto;
 }
-.img-circle{
-  width:118px;
-  height: 118px;
-  background: #fff;
-  margin:61px auto 0;
-  border-radius: 100px;
- border:4px solid #94C433;
+.img-circle {
+  width: 100%;
+  height:100%;
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+
+
 }
+
+.img-circle img{
+  width:122px;
+  height: auto;
+  }
 
 .course-wrap-box{
   width:915px;
   height: 241px;
   display: flex;
-  box-shadow: 8px 5px 16px -9px rgba(0, 0, 0, 0.25);;
+  box-shadow: rgb(0 0 0 / 4%) 0px 2px 10px;
+  background: #fff;
 }
 .img-box{
   width: 213px;
@@ -115,6 +121,7 @@ button{
   width:133px;
   height: 43px;
   border:solid 1px #1D6B41 ;
+  font-size: 12px;
 }
 button:hover{
   cursor: pointer;
