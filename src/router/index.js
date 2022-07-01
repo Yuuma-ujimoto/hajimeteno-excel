@@ -6,6 +6,11 @@ const routes =[
     name:"course list",
     component:import("@/views/CourseListView.vue"),
     path:"/course/list"
+  },
+  {
+    name:"course info",
+    component:import("@/views/CourseInfoView.vue"),
+    path:"/course/info"
   }
 ]
 
