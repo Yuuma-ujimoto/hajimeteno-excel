@@ -1,7 +1,7 @@
 <template>
 <div class="wrap">
   
-  <h1>ようこそマンセルへ！ <br>表計算ソフトで多用されている『Excel』 <br> 使えたら便利なショートカットキーや機能を全部まとめたこのマンセルを使って <br> １ヶ月であなたもExcelマスターになろう！  </h1>
+  <p class="catch-copy">ようこそマンセルへ！ <br>表計算ソフトで多用されている『Excel』 <br> 使えたら便利なショートカットキーや機能を全部まとめたこのマンセルを使って <br> １ヶ月であなたもExcelマスターになろう！  </p>
    <div v-for="course in axiosdata" :key="course.courseId" class="course-wrap">
     <div class="course-wrap-box">
       <div class="img-box">
@@ -60,9 +60,11 @@ export default {
 </script>
 
 <style scoped>
-h1{
+.catch-copy{
   text-align: center;
   margin-bottom: 49.5px;
+  font-size: 20px;
+line-height: 40px;
 }
 
 .wrap{
