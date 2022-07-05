@@ -4,9 +4,12 @@
     <!-- コーステーマ -->
     <div class="course-theme">
       <div class="course-theme-wrap">
-        <div class="text-wrap">
-          <h1>基礎編</h1>
-        </div>
+        <!-- <div class="text-wrap"> -->
+          <!-- <h1>{{ axiosdata[0] }}</h1> -->
+          <!-- <p>{{ axiosdata.lesson.course.courseDetail }}</p> -->
+        <!-- </div> -->
+        <h1>基礎</h1>
+        <p>あいうえおかきくえお</p>
       </div>
     </div>
 
@@ -17,13 +20,15 @@
         <ul>
           <div>
             <li class="chapter-list-title-li">
-              <h2 class="chapter-list-title">1章 : Excelに触れてみよう！</h2>
+              <h2 class="chapter-list-title">{{ chapter.lesson.lessonName }}</h2>
             </li>
             <ul>
               <li v-for="chapter in axiosdata" :key="chapter.chapterId">
-                <a class="link-to-page" href="#">
-                  {{ chapter.chapterName }}
-                </a>
+                <router-link :to="'/exercise/'+chapter.chapterId">
+                  <button class="link-to-page">
+                    {{ chapter.chapterName }}
+                  </button>
+                </router-link>
               </li>
             </ul>
           </div>
@@ -41,7 +46,7 @@ export default {
   name: "CourseInfoView",
   data() {
     return {
-      axiosdata: {}
+      axiosdata: {},
     }
   },
   mounted() {
@@ -53,7 +58,7 @@ export default {
       const axiosURL = axios_domain + "/api/chapter/get_all"
       const axiosResponse = await axios.get(axiosURL)    
       this.axiosdata = axiosResponse.data.chapters;
-      console.log( axiosResponse )
+      console.log( axiosResponse.data.chapters[0].chapterId )
     }
   }
 }
@@ -102,7 +107,8 @@ ul {
 /* コーステーマ */
 .course-theme {
   margin: auto;
-  height: calc((100vw/4));
+  /* height: calc((100vw/4)); */
+  padding: 70px 0;
   background-color: #1D6B41;
 
   /* course-theme-wrapを上下中央揃え */
@@ -111,6 +117,9 @@ ul {
 }
 .course-theme-wrap {
   width: 85%;
+}
+.course-theme p {
+  color: #fff;
 }
 
 /* レッスン一覧 */
