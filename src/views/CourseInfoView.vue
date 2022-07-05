@@ -220,6 +220,7 @@ ul {
   visibility: hidden;
 }
 .chapter-show-list-a {
+  width: 280px;
   color: #717F94;
 }
 /* hover */
