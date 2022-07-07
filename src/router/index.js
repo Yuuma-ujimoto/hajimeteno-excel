@@ -1,23 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-
 const routes =[
   {
     name:"course list",
     component:import("@/views/CourseListView.vue"),
-    path:"/course/list"
+    path:"/course/list",
+    meta: { title: 'マンセル｜コース一覧' }
   },
   {
     name:"course info",
     component:import("@/views/CourseInfoView.vue"),
-    path:"/course/info"
+    meta: { title: 'マンセル｜コース詳細' }
+   
   }
 ]
 
-
+const DEFAULT_TITLE = 'マンセル'
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+router.afterEach((to) => {
+  document.title = to.meta.title || DEFAULT_TITLE
 })
 
 export default router
