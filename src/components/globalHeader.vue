@@ -2,7 +2,7 @@
   <header>
 <ul>
   <li>
-    <a href="#"><img src="@/assets/img/logo.png" alt="" class="logo-img"></a>
+  <router-link :to="'/course/list'"><img src="@/assets/img/logo.png" alt="" class="logo-img"></router-link>
   </li>
   <li class="menu">
     <router-link :to="'/course/list'">レベル一覧</router-link>

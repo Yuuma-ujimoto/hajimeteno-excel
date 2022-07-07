@@ -1,5 +1,4 @@
 <template>
- <globalHeader />
 <div class="main">
   <div class="wrap">
     <!-- コーステーマ -->
@@ -56,19 +55,12 @@
     </div>
   </div>
 </div>
- <globalFooter />
 </template>
 
 <script>
-import globalHeader from "@/components/globalHeader";
-import globalFooter from "@/components/globalFooter";
 import {axios_domain} from "@/assets/axios_domain";
 import axios from "axios";
 export default {
-    components: {
-    globalHeader,
-    globalFooter
-  },
   name: "CourseInfoView",
   data() {
     return {
