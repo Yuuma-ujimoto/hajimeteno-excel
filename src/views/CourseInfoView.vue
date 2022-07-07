@@ -7,6 +7,7 @@
         <div class="text-wrap">
           <h1>基礎編</h1>
           <p>入力方法やセル操作など、基本的なExcelの操作を実際に触りながら一緒に勉強しよう！</p>
+          <p>{{ idNum }}</p>
           <!-- <h1>{{ axiosdata[0] }}</h1> -->
           <!-- <p>{{ axiosdata.lesson.course.courseDetail }}</p> -->
         </div>
@@ -15,19 +16,20 @@
     </div>
 
     <!-- レッスン一覧 -->
-    <h2 class="lesson-list-title">学べること一覧</h2>
+    <h2 class="lesson-list-title" id="test">学べること一覧</h2>
     <div class="lesson-list">
       <div class="chapter-list">
         <!-- レッスンをv-forで回す -->
         <div class="chapter-list-wrap" v-for="chapter in axiosdata" :key="chapter.chapterId">
-          <ul>
+          <ul v-if="chapter.lesson.course.courseId === 1">
             <div>
               <li class="chapter-list-title-li">
-                <h2 class="chapter-list-title"  v-bind:id="chapter.lesson.lessonId">{{ chapter.lesson.lessonName }}</h2>
+                <h2 class="chapter-list-title"  v-bind:id="chapter.lesson.lessonId" v-on="argFunc(chapter.lesson.lessonId)">{{ chapter.lesson.lessonName }}</h2>
               </li>
-              <ul>
-                <!-- チャプターをv-forで回す -->
-                <li v-for="chapter in axiosdata" :key="chapter.chapterId">
+              <p>{{ idNum }}</p>
+              <!-- チャプターをv-forで回す -->
+              <ul v-for="chapter in axiosdata" :key="chapter.chapterId">
+                <li v-if="chapter.lesson.lessonId === 1">
                   <router-link :to="'/exercise/'+chapter.chapterId">
                     <a class="link-to-page">
                       {{ chapter.chapterName }}
@@ -65,6 +67,7 @@ export default {
   data() {
     return {
       axiosdata: {},
+      idNum: ''
     }
   },
   mounted() {
@@ -76,7 +79,10 @@ export default {
       const axiosURL = axios_domain + "/api/chapter/get_all"
       const axiosResponse = await axios.get(axiosURL)    
       this.axiosdata = axiosResponse.data.chapters;
-      console.log( axiosResponse.data.chapters[0].chapterId )
+      console.log( axiosResponse )
+    },
+    acquisition: function(num){
+      this.idNum = num
     }
   }
 }
