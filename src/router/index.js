@@ -2,14 +2,21 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes =[
   {
-    name:"course list",
+    name:"home",
     component:import("@/views/CourseListView.vue"),
-    path:"/course/list",
+    path:"/",
     meta: { title: 'マンセル｜コース一覧' }
   },
+  // {
+  //   name:"course list",
+  //   component:import("@/views/CourseListView.vue"),
+  //   path:"/course/list",
+  //   meta: { title: 'マンセル｜コース一覧' }
+  // },
   {
     name:"course info",
     component:import("@/views/CourseInfoView.vue"),
+    path:"/course/info",
     meta: { title: 'マンセル｜コース詳細' }
    
   }

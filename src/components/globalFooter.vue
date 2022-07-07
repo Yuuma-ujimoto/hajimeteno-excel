@@ -18,8 +18,8 @@ footer {
   height: 150px;
   width: 100%;
   background: #fff;
-  position: absolute; /*←絶対位置*/
-  bottom: 0; /*下に固定*/
+  /* position: absolute;
+  bottom: 0;  */
   
 }
 .copyright {
