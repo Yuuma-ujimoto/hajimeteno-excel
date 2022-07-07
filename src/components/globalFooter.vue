@@ -18,6 +18,7 @@ footer {
   height: 150px;
   width: 100%;
   background: #fff;
+  border-top: 1px solid #eee;
   /* position: absolute;
   bottom: 0;  */
   
