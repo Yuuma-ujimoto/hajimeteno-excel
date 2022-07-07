@@ -1,8 +1,9 @@
 <template>
+ <globalHeader />
   <div class="wrap">
     <p class="catch-copy">
       ようこそマンセルへ！ <br />表計算ソフトで多用されている『Excel』 <br />
-使えたら便利なショートカットキーや機能を全部まとめたこのマンセルを使って
+      使えたら便利なショートカットキーや機能を全部まとめたこのマンセルを使って
       <br />
       １ヶ月であなたもExcelマスターになろう！
     </p>
@@ -34,12 +35,20 @@
       </div>
     </div>
   </div>
+  <globalFooter />
 </template>
 
 <script>
 import { axios_domain } from "@/assets/axios_domain";
+import globalHeader from "@/components/globalHeader";
+import globalFooter from "@/components/globalFooter";
 import axios from "axios";
 export default {
+  components: {
+    globalHeader,
+    globalFooter
+  },
+
   name: "CourseListView",
   data() {
     return {
@@ -71,10 +80,9 @@ export default {
 .wrap {
   width: 960px;
   margin: 0 auto;
-  padding-bottom:85px ;
+  padding-bottom: 85px;
 }
 
- 
 .img-circle {
   width: 100%;
   height: 100%;
