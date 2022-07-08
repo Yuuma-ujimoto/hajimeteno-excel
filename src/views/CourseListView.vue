@@ -1,5 +1,4 @@
 <template>
- <globalHeader />
   <div class="wrap">
     <p class="catch-copy">
       ようこそマンセルへ！ <br />表計算ソフトで多用されている『Excel』 <br />
@@ -35,20 +34,12 @@
       </div>
     </div>
   </div>
-  <globalFooter />
 </template>
 
 <script>
 import { axios_domain } from "@/assets/axios_domain";
-import globalHeader from "@/components/globalHeader";
-import globalFooter from "@/components/globalFooter";
 import axios from "axios";
 export default {
-  components: {
-    globalHeader,
-    globalFooter
-  },
-
   name: "CourseListView",
   data() {
     return {

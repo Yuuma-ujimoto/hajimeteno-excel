@@ -1,5 +1,8 @@
 <template>
+<<<<<<< HEAD
 <globalHeader />
+=======
+>>>>>>> 5cbab1b4a65e65ebc9432f8275f258d13e5d2bdd
 <div class="main">
   <div class="wrap">
     <!-- コーステーマ -->
@@ -58,19 +61,16 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 <globalFooter />
+=======
+>>>>>>> 5cbab1b4a65e65ebc9432f8275f258d13e5d2bdd
 </template>
 
 <script>
-import globalHeader from "@/components/globalHeader";
-import globalFooter from "@/components/globalFooter";
 import {axios_domain} from "@/assets/axios_domain";
 import axios from "axios";
 export default {
-    components: {
-    globalHeader,
-    globalFooter
-  },
   name: "CourseInfoView",
   data() {
     return {
