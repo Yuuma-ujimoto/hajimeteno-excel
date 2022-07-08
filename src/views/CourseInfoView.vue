@@ -1,5 +1,5 @@
 <template>
- <globalHeader />
+<globalHeader />
 <div class="main">
   <div class="wrap">
     <!-- コーステーマ -->
@@ -17,7 +17,7 @@
     </div>
 
     <!-- レッスン一覧 -->
-    <h2 class="lesson-list-title" id="test">学べること一覧</h2>
+    <h2 class="lesson-list-title">学べること一覧</h2>
     <div class="lesson-list">
       <div class="chapter-list">
         <!-- レッスンをv-forで回す -->
@@ -58,7 +58,7 @@
     </div>
   </div>
 </div>
- <globalFooter />
+<globalFooter />
 </template>
 
 <script>
