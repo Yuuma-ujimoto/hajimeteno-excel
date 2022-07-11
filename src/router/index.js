@@ -16,7 +16,7 @@ const routes =[
   {
     name:"course info",
     component:import("@/views/CourseInfoView.vue"),
-    path:"/course/info",
+    path:"/course/info/:id",
     meta: { title: 'マンセル｜コース詳細' }
    
   }

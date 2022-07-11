@@ -5,10 +5,13 @@
     <div class="course-theme">
       <div class="course-theme-wrap">
         <div class="text-wrap">
-          <h1>基礎編</h1>
-          <p>入力方法やセル操作など、基本的なExcelの操作を実際に触りながら一緒に勉強しよう！</p>
-          <!-- <h1>{{ axiosdata[0] }}</h1> -->
-          <!-- <p>{{ axiosdata.lesson.course.courseDetail }}</p> -->
+          <div v-for="course in axiosdataCourse" :key="course.courseId">
+            <div v-if="course.courseId == $route.params.id">
+              <h1>{{ course.courseName }}</h1>
+              <p>{{ course.courseDetail }}</p>
+            </div>
+            <div v-else class="none"></div>
+          </div>
         </div>
         <img src="@/assets/img/course-theme.svg" alt="">
       </div>
@@ -19,37 +22,46 @@
     <div class="lesson-list">
       <div class="chapter-list">
         <!-- レッスンをv-forで回す -->
-        <div class="chapter-list-wrap" v-for="chapter in axiosdata" :key="chapter.chapterId">
-          <ul>
-            <div>
-              <li class="chapter-list-title-li">
-                <h2 class="chapter-list-title"  v-bind:id="chapter.lesson.lessonId">{{ chapter.lesson.lessonName }}</h2>
-              </li>
-              <ul>
-                <!-- チャプターをv-forで回す -->
-                <li v-for="chapter in axiosdata" :key="chapter.chapterId">
-                  <router-link :to="'/exercise/'+chapter.chapterId">
-                    <a class="link-to-page">
-                      {{ chapter.chapterName }}
-                    </a>
-                  </router-link>
+        <div class="chapter-list-wrap">
+          <div v-for="lesson in axiosdataLesson" :key="lesson.lessonId">
+            <ul v-on="acquisition(lesson.lessonId)" v-if="lesson.course.courseId == $route.params.id">
+              <div>
+                <li class="chapter-list-title-li" v-on="acquisition(lesson.lessonId)" v-if="lesson.course.courseId == $route.params.id">
+                  <h2 class="chapter-list-title"  v-bind:id="lesson.lessonId">{{ lesson.lessonName }}</h2>
                 </li>
-              </ul>
-            </div>
-          </ul>
+                <!-- チャプターをv-forで回す -->
+                <ul>
+                  <div v-for="chapter in axiosdata" :key="chapter.chapterId">
+                    <li v-if="chapter.lesson.lessonId === idNum">
+                      <router-link :to="'/exercise/'+chapter.chapterId">
+                        <a class="link-to-page">
+                          {{ chapter.chapterName }}
+                        </a>
+                      </router-link>
+                    </li>
+                    <li v-else class="none"></li>
+                  </div>
+                </ul>
+              </div>
+            </ul>
+            <ul v-else class="none"></ul>
+          </div>
         </div>
       </div>
       <!-- レッスン一覧の目次 -->
       <div class="chapter-show-list">
-        <ul v-for="chapter in axiosdata" :key="chapter.chapterId">
-          <li class="chapter-show-list-li">
-            <!-- 緑の丸 -->
-            <div class="chapter-circle">
-              <div class="chapter-circle-small"></div>
-            </div>
-            <!-- レッスン名 -->
-            <a class="chapter-show-list-a" v-bind:href="'#' + chapter.lesson.lessonId">{{ chapter.lesson.lessonName }}</a>
-          </li>
+        <ul>
+          <div v-for="lesson in axiosdataLesson" :key="lesson.lessonId">
+            <li class="chapter-show-list-li" v-if="lesson.course.courseId == $route.params.id">
+              <!-- 緑の丸 -->
+              <div class="chapter-circle">
+                <div class="chapter-circle-small"></div>
+              </div>
+              <!-- レッスン名 -->
+              <a class="chapter-show-list-a" v-bind:href="'#' + lesson.lessonId">{{ lesson.lessonName }}</a>
+            </li>
+            <li v-else class="none"></li>
+          </div>
         </ul>
       </div>
     </div>
@@ -65,6 +77,9 @@ export default {
   data() {
     return {
       axiosdata: {},
+      axiosdataLesson: {},
+      axiosdataCourse: {},
+      idNum: ''
     }
   },
   mounted() {
@@ -72,11 +87,20 @@ export default {
   },
   methods:{
     ajax_test:async function(){
-
       const axiosURL = axios_domain + "/api/chapter/get_all"
-      const axiosResponse = await axios.get(axiosURL)    
+      const axiosURLLesson = axios_domain + "/api/lesson/get_all"
+      const axiosURLCourse = axios_domain + "/api/course/get_all"
+      const axiosResponse = await axios.get(axiosURL)  
+      const axiosResponseLesson = await axios.get(axiosURLLesson)   
+      const axiosResponseCourse = await axios.get(axiosURLCourse)
       this.axiosdata = axiosResponse.data.chapters;
-      console.log( axiosResponse.data.chapters[0].chapterId )
+      this.axiosdataLesson = axiosResponseLesson.data.lessons;
+      this.axiosdataCourse = axiosResponseCourse.data.courses;
+
+      console.log( axiosResponse )
+    },
+    acquisition: function(num){
+      this.idNum = num
     }
   }
 }
@@ -121,6 +145,9 @@ ul {
   margin: auto;
   padding-top: 30px;
 }
+.none {
+  display: none;
+}
 
 /* コーステーマ */
 .course-theme {
@@ -151,6 +178,7 @@ ul {
 }
 .lesson-list {
   display: flex;
+  margin-bottom: 100px;
 }
 
 /* レッスン・チャプター一覧 */
@@ -229,11 +257,11 @@ ul {
   height: 45px;
   margin: 0 12.5px;
   background-color: #C7E194;
-  /* transition: all .2s; */
+  transition: all .1s;
 }
 .chapter-show-list-li:hover .chapter-circle-small {
   visibility: visible;
   margin: 10px;
-  /* transition: all .2s; */
+  transition: all .1s;
 }
 </style>
