@@ -21,11 +21,17 @@
 
           <div class="btn-wrap">
             <router-link :to="'/course/info/' + course.courseId"
-              ><button class="back-white">レッスン詳細へ</button></router-link
-            >
-            <router-link :to="'/course/info/' + course.courseId"
-              ><button class="back-green">レッスンを始める</button></router-link
-            >
+              ><button class="back-white">レッスン詳細へ</button></router-link>
+
+            <router-link :to="'/exercise/1' " v-if="course.courseId == '1'">
+            <button class="back-green">レッスンを始める</button>
+            </router-link>
+               <router-link :to="'/exercise/3' " v-else-if="course.courseId == '2'">
+            <button class="back-green">レッスンを始める</button>
+            </router-link>
+               <router-link :to="'/exercise/5' " v-else-if="course.courseId == '3'">
+            <button class="back-green">レッスンを始める</button>
+            </router-link>
           </div>
         </div>
       </div>
