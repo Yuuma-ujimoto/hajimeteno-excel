@@ -152,7 +152,7 @@ button:hover {
 .gray-line {
   width: 10px;
   height: 50px;
-  margin: 10px 0px 10px 10%;
+  margin: 10px 0px 10px 101px;
   border-radius: 20px;
   background: rgba(36, 61, 63, 0.2);
 }
