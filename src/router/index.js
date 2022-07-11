@@ -19,6 +19,11 @@ const routes = [{
         path: "/course/info/:id",
         meta: { title: 'マンセル｜コース詳細' }
 
+    },
+    {
+        name: "exercise slide",
+        component: import ("@/views/ExerciseslideView.vue"),
+        path: "/exerciseslide"
     }
 
 ]
