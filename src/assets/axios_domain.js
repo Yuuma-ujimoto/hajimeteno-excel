@@ -1,1 +1,1 @@
-export const axios_domain = "http://localhost:8080"
+export const axios_domain = "https://hajimeteno-excel-hajimeteno-excel.azuremicroservices.io/"
