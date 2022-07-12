@@ -22,8 +22,8 @@ const routes =[
   },
   {
     name:"chapter main",
-    path: "/chapter/:id",
-    component: import("@/views/ChapterMainView.vue")
+    path: "/exercise/:id",
+    component: import("@/views/ExerciseMainView.vue")
   }
 ]
 

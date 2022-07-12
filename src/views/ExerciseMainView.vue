@@ -11,7 +11,13 @@
 
       <div class="cell-center-area">
         <div class="row-area">
+          <div class="row-cell-wrapper" v-for="i in [...Array(10).keys()] " :key="i">
+            <div class="row-index">
+            {{i+2}}
+            </div>
+            <div class="cell"/>
 
+          </div>
         </div>
         <div class="cell-area">
           <div class="cell" v-for="(cellData,index) in cellArray" :key="index">
@@ -36,20 +42,13 @@
 <script>
 export default {
   name: "exerciseMain",
-
-  props: {
-    exerciseData: {
-      type: Object
-    }
-  },
   data() {
     return {
+      exerciseData: {title:"test",cellData:"名前|得点|||a|1|||"},
       cellArray: []
     }
   },
   mounted() {
-
-
     this.cellArray = this.exerciseData.cellData.split("|")
   }
 }
@@ -68,6 +67,7 @@ export default {
   height: 30px;
   border: solid 1px;
   box-sizing: border-box;
+  background: #ffffff;
 }
 
 .exercise-wrapper {
@@ -84,6 +84,7 @@ export default {
 .exercise-main {
   width: 70%;
   height: 660px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
@@ -98,6 +99,7 @@ export default {
 .column-area{
   width: 100%;
   height: 60px;
+  box-sizing: border-box;
   border: solid 1px #1C683F;
 }
 
@@ -107,6 +109,22 @@ export default {
   background: aliceblue;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border: solid 1px;
+}
+
+.row-cell-wrapper{
+  display: flex;
+  width: 100%;
+  height: 30px;
+}
+
+.row-index{
+  width: 55px;
+  height: 30px;
+  box-sizing: border-box;
+  border: solid 1px #000;
 }
 
 </style>
