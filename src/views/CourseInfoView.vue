@@ -139,11 +139,11 @@ ul {
   width: 100vw;
   color: #335A6F;
   background: #FBFEF7;
+  margin-top: 30px;
 }
 .wrap {
   width: 85%;
   margin: auto;
-  padding-top: 30px;
 }
 .none {
   display: none;
@@ -153,8 +153,10 @@ ul {
 .course-theme {
   margin: auto;
   /* height: calc((100vw/4)); */
-  padding: 70px 0;
+  padding: 60px 0;
   background-color: #1D6B41;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 4%);
 
   /* course-theme-wrapを上下中央揃え */
   display: flex;
