@@ -52,13 +52,15 @@
       <div class="chapter-show-list">
         <ul>
           <div v-for="lesson in axiosdataLesson" :key="lesson.lessonId">
-            <li class="chapter-show-list-li" v-if="lesson.course.courseId == $route.params.id">
+            <li v-if="lesson.course.courseId == $route.params.id">
+            <a class="chapter-show-list-a"  v-bind:href="'#' + lesson.lessonId">
               <!-- 緑の丸 -->
               <div class="chapter-circle">
                 <div class="chapter-circle-small"></div>
               </div>
               <!-- レッスン名 -->
-              <a class="chapter-show-list-a" v-bind:href="'#' + lesson.lessonId">{{ lesson.lessonName }}</a>
+              <span class="chapter-show-list-span">{{ lesson.lessonName }}</span>
+            </a>  
             </li>
             <li v-else class="none"></li>
           </div>
@@ -229,7 +231,7 @@ ul {
   line-height: 60px;
   letter-spacing: .02em;
 }
-.chapter-show-list li {
+.chapter-show-list-a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -249,19 +251,19 @@ ul {
   border-radius: 50%;
   visibility: hidden;
 }
-.chapter-show-list-a {
+.chapter-show-list-span {
   width: 280px;
   color: #717F94;
 }
 /* hover */
-.chapter-show-list-li:hover .chapter-circle {
+.chapter-show-list-a:hover .chapter-circle {
   width: 45px;
   height: 45px;
   margin: 0 12.5px;
   background-color: #C7E194;
   transition: all .1s;
 }
-.chapter-show-list-li:hover .chapter-circle-small {
+.chapter-show-list-a:hover .chapter-circle-small {
   visibility: visible;
   margin: 10px;
   transition: all .1s;
