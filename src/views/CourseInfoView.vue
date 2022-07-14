@@ -16,6 +16,12 @@
         <img src="@/assets/img/course-theme.svg" alt="">
       </div>
     </div>
+    <!-- 最初から始めるボタン -->
+    <div class="lesson-start">
+      <router-link :to="'/exercise/'+chapter[0]">
+      <a class="lesson-start-a">最初から始める</a>
+      </router-link>
+    </div>
 
     <!-- レッスン一覧 -->
     <h2 class="lesson-list-title">学べること一覧</h2>
@@ -26,14 +32,14 @@
           <div v-for="lesson in axiosdataLesson" :key="lesson.lessonId">
             <ul v-on="acquisition(lesson.lessonId)" v-if="lesson.course.courseId == $route.params.id">
               <div>
-                <li class="chapter-list-title-li" v-on="acquisition(lesson.lessonId)" v-if="lesson.course.courseId == $route.params.id">
+                <li class="chapter-list-title-li">
                   <h2 class="chapter-list-title"  v-bind:id="lesson.lessonId">{{ lesson.lessonName }}</h2>
                 </li>
                 <!-- チャプターをv-forで回す -->
                 <ul>
                   <div v-for="chapter in axiosdata" :key="chapter.chapterId">
                     <li v-if="chapter.lesson.lessonId === idNum">
-                      <router-link :to="'/exercise/'+chapter.chapterId">
+                      <router-link :to="'/exercise/'+chapter.chapterId" v-on="chapterPush(chapter.chapterId)">
                         <a class="link-to-page">
                           {{ chapter.chapterName }}
                         </a>
@@ -81,7 +87,8 @@ export default {
       axiosdata: {},
       axiosdataLesson: {},
       axiosdataCourse: {},
-      idNum: ''
+      idNum: '',
+      chapter: []
     }
   },
   mounted() {
@@ -103,6 +110,9 @@ export default {
     },
     acquisition: function(num){
       this.idNum = num
+    },
+    chapterPush: function(chapterNum){
+      this.chapter.push(chapterNum)
     }
   }
 }
@@ -157,7 +167,7 @@ ul {
   /* height: calc((100vw/4)); */
   padding: 60px 0;
   background-color: #1D6B41;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   box-shadow: 0 2px 10px rgb(0 0 0 / 4%);
 
   /* course-theme-wrapを上下中央揃え */
@@ -173,6 +183,32 @@ ul {
   width: 70%;
 }
 .text-wrap p {
+  color: #fff;
+}
+
+/* 最初から始めるボタン */
+.lesson-start {
+  box-shadow: 0 2px 10px rgb(0 0 0 / 4%);
+  margin: auto;
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+  padding: 20px 60px;
+  font-size: 0.875rem;
+}
+.lesson-start-a {
+  display:block;
+  width: 230px;
+  padding: 15px 10px;
+  margin-left: auto;
+  background-color: #fff;
+  color: #1D6B41;
+  border: solid 1px #1D6B41;
+  text-align: center;
+  transition: ease-in .2s;
+}
+
+.lesson-start-a:hover {
+  background-color: #1D6B41;
   color: #fff;
 }
 
