@@ -1,130 +1,190 @@
 <template>
   <div class="exercise-wrapper">
-    <div class="exercise-info">
-      {{ exerciseData.title }}
-    </div>
-
-    <div class="exercise-main">
-
-      <div class="column-area">
-      </div>
-
-      <div class="cell-center-area">
-        <div class="row-area">
-          <div class="row-cell-wrapper" v-for="i in [...Array(10).keys()] " :key="i">
-            <div class="row-index">
-            {{i+2}}
-            </div>
-            <div class="cell"/>
-
-          </div>
+    <div class="exercise-area">
+      <div class="exercise-info-wrapper">
+        <div class="exercise-info">
+          問題文〜〜〜〜〜〜〜〜〜〜〜
+          {{ exerciseData.question }}
         </div>
-        <div class="cell-area">
-          <div class="cell" v-for="(cellData,index) in cellArray" :key="index">
-            {{ cellData }}
+      </div>
+      <div class="exercise-main">
+        <div class="exercise-image-area">
+          <!--      <img alt="問題画像" src="./">-->
+        </div>
+        <div class="exercise-answer-area">
+          <div class="answer-input-wrapper">
+            <input type="text" class="answer-input" maxlength="255" v-model="answer_input">
           </div>
-
-          <div class="answer-area">
-
+          <div class="submit-wrapper">
+            <button class="submit-button" @click="answer">解答</button>
           </div>
         </div>
       </div>
+    </div>
 
+    <div class="exercise-footer">
+      <div class="slide-button-wrapper">
+        <button class="slide-button">スライドを見る</button>
+      </div>
     </div>
 
   </div>
-  <div class="slide-area">
+
+  <div class="slide" v-if="isSlideOpen">
+    <!--
+      ここにスライドのコンポーネントを配置し
+        イベントに応じて表示を切り替える
+    -->
 
   </div>
+
 
 </template>
 
 <script>
+import {axios_domain} from "@/assets/axios_domain";
+import axios from "axios";
+
 export default {
   name: "exerciseMain",
   data() {
     return {
-      exerciseData: {title:"test",cellData:"名前|得点|||a|1|||"},
-      cellArray: []
+      exerciseData: {question: "test", answer: "=(A2+B2)"},
+      isSlideOpen: false,
+      isResultModalOpen: false,
+      answer_input: ""
     }
   },
   mounted() {
-    this.cellArray = this.exerciseData.cellData.split("|")
+    this.getExerciseData().then()
+  },
+  methods: {
+    getExerciseData: async function () {
+      const axiosURL = axios_domain + "/api/chapter/get_all"
+      const axiosResult = await axios.get(axiosURL)
+      console.log(axiosResult)
+
+      const chapters = axiosResult.data.chapters
+
+      for (let chapter of chapters){
+
+        if (chapter.chapterId === parseInt(this.$route.params.id)){
+          console.log(chapter)
+          this.exerciseData.answer = chapter.answer
+          this.exerciseData.question = chapter.question
+
+
+          break
+        }
+      }
+
+    },
+    answer() {
+      if (this.answer_input === this.exerciseData.answer) {
+        //
+        this.isResultModalOpen = true
+      }
+
+    }
   }
 }
 </script>
 
 <style scoped>
-.cell-area {
-  width: 330px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: start;
-}
-
-.cell {
-  width: 110px;
-  height: 30px;
-  border: solid 1px;
-  box-sizing: border-box;
-  background: #ffffff;
-}
 
 .exercise-wrapper {
-  width: 100%;
-  display: flex;
-}
-
-.exercise-info {
-  width: 30%;
-  height: 660px;
-  display: flex;
-}
-
-.exercise-main {
-  width: 70%;
-  height: 660px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
-.cell-center-area{
+.exercise-area {
   width: 100%;
-  height: 100%;
+  height: 550px;
   display: flex;
-  flex-direction: row;
 }
 
-.column-area{
-  width: 100%;
-  height: 60px;
+.exercise-info-wrapper {
+  width: 25%;
+  height: 100%;
+  background: #94C433;
+  padding: 10px;
   box-sizing: border-box;
-  border: solid 1px #1C683F;
 }
 
-.row-area{
-  width: 165px;
+.exercise-info {
+  width: 100%;
   height: 100%;
-  background: aliceblue;
+  background: #eeeeee;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.exercise-main {
+  width: 75%;
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  flex-direction: column;
+}
+
+.exercise-image-area {
+  width: 100%;
+  height: 450px;
+}
+
+.exercise-answer-area {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  background: white;
   border: solid 1px;
 }
 
-.row-cell-wrapper{
+.answer-input-wrapper {
+  width: 60%;
+  height: 100px;
+  box-sizing: border-box;
   display: flex;
-  width: 100%;
-  height: 30px;
+  justify-content: center;
+  align-items: center;
+
 }
 
-.row-index{
-  width: 55px;
-  height: 30px;
-  box-sizing: border-box;
-  border: solid 1px #000;
+.answer-input {
+  width: 350px;
+  height: 50px;
+  font-size: 24px;
 }
+
+.submit-wrapper {
+  width: 40%;
+  height: 100px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-button {
+  width: 150px;
+  height: 50px;
+  background: #1C683F;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+
+.slide-button {
+  width: 150px;
+  height: 40px;
+  box-sizing: border-box;
+  background: #1C683F;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
 
 </style>
