@@ -1,4 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import ServerErrorView from "@/views/ErrorViews/ServerErrorView";
 
 const routes = [
     {
@@ -26,13 +27,19 @@ const routes = [
         component: import("@/views/ExerciseMainView.vue")
     },
 
+    {
+        name: "500 error",
+        path: "/error/:code",
+        component: ServerErrorView
+    },
+
     // 404エラー
     // 上のルーティング全てに一致しなかった場合このページが呼ばれるので
     // ページを追加することがある場合はここよりも上に追加してください
     {
         name: "404 error",
         path: "/:catchAll(.*)",
-        component: import("@/views/404errorView.vue")
+        component: import("@/views/ErrorViews/404ErrorView.vue")
     }
 ]
 
