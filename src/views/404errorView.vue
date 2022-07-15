@@ -27,9 +27,9 @@ export default {
     align-items: center;
   }
   p{
-    font-size: 24px;
+    font-size: 25px;
   }
   .error-code{
-    font-size: 48px;
+    font-size: 60px;
   }
 </style>
