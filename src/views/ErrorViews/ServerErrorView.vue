@@ -1,15 +1,28 @@
 <template>
   <div class="error-wrapper">
     <div class="error-main">
-    <p>Error! <span class="error-code">404!</span></p>
-    <p>残念ながらページが見つかりませんでした・・・。</p>
+    <p>Error! <span class="error-code">{{errorCode}}!</span></p>
+    <p>{{errorMessage}}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "404errorView"
+  name: "ServerErrorView",
+  data(){
+    return{
+      errorCode:500,
+      errorMessage:"サーバー内部エラー!"
+    }
+  },
+  mounted() {
+    try {
+      this.errorCode = parseInt(this.$route.params.code)
+    }catch (e){
+      console.log(e)
+    }
+  }
 }
 </script>
 
@@ -27,9 +40,9 @@ export default {
     align-items: center;
   }
   p{
-    font-size: 24px;
+    font-size: 25px;
   }
   .error-code{
-    font-size: 48px;
+    font-size: 60px;
   }
 </style>
